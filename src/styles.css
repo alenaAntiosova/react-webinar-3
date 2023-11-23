@@ -50,7 +50,6 @@ body {
 }
 
 .Item-title {
-  width: 100%;
   padding: 20px 10px;
 }
 
@@ -58,4 +57,23 @@ body {
   display: flex;
   justify-content: flex-end;
   padding: 20px 20px 20px 10px;
+}
+
+.item-text {
+  display: none;
+}
+
+.item-text span {
+  padding-right: 10px;
+}
+
+.item-text__selected {
+  display: block;
+}
+
+.Item-wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
 }

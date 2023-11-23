@@ -26,7 +26,10 @@ function App({store}) {
               <div className={'Item' + (item.selected ? ' Item_selected' : '')}
                    onClick={() => store.selectItem(item.code)}>
                 <div className='Item-code'>{item.code}</div>
-                <div className='Item-title'>{item.title}</div>
+                <div className='Item-wrapper'>
+                  <div className='Item-title'>{item.title} </div>
+                  <p className={'item-text' + (item.selected ? ' item-text__selected' : '')}><span>|</span>Выделяли {item.sumSelectedItemArray.length > 0 ? `${item.sumSelectedItemArray.length}` : ''} раз</p>
+                </div>
                 <div className='Item-actions'>
                   <button onClick={() => store.deleteItem(item.code)}>
                     Удалить
