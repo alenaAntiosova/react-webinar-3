@@ -30,7 +30,7 @@ function App({store}) {
                 <div className='Item-wrapper'>
                   <div className='Item-title'>{item.title} </div>
                   <p className={'item-text' + (item.selected ? ' item-text__selected' : '')}>
-                 | Выделяли {item.sumSelectedItemArray.length > 0 ? `${item.sumSelectedItemArray.length}` : ''}{item.sumSelectedItemArray.length > 0 ? ` ${getPluralizeItem(item.sumSelectedItemArray.length)}` : ''}</p>
+                  Выделяли {item.sumSelectedItemArray && item.sumSelectedItemArray.length > 0 ? `${item.sumSelectedItemArray.length} ${getPluralizeItem(item.sumSelectedItemArray.length)}` : ''}</p>
                 </div>
                 <div className='Item-actions'>
                   <button onClick={() => store.deleteItem(item.code)}>
