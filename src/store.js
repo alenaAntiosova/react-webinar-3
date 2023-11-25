@@ -70,14 +70,22 @@ class Store {
       ...this.state,
       list: this.state.list.map((item) => {
         if (item.code === code) {
-          item.sumSelectedItemArray.push(item.selected);
           item.selected = !item.selected;
+          if (item.selected) {
+            item.sumSelectedItemArray.push(true);
+          }
         } else {
           item.selected = false;
         }
         return item;
       })
     });
+    function getPluralizeItem(item) {
+      if (item % 100 > 1 && item % 100 < 4) {
+        return ` разa`;
+      }
+      return `раз`;
+    }
   }
 }
 
