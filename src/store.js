@@ -80,12 +80,6 @@ class Store {
         return item;
       })
     });
-    function getPluralizeItem(item) {
-      if (item % 100 > 1 && item % 100 < 4) {
-        return ` разa`;
-      }
-      return `раз`;
-    }
   }
 }
 
