@@ -1,6 +1,5 @@
 import React from 'react';
 import {createElement} from './utils.js';
-import {getPluralizeItem} from './common.js'
 import './styles.css';
 
 /**
@@ -11,6 +10,20 @@ import './styles.css';
 function App({store}) {
 
   const list = store.getState().list;
+
+  const callbacks = {
+    onDeleteItem: useCallback((code) => {
+      store.deleteItem(code);
+    }, [store]),
+
+    onSelectItem: useCallback((code) => {
+      store.selectItem(code);
+    }, [store]),
+
+    onAddItem: useCallback(() => {
+      store.addItem();
+    }, [store])
+  }
 
   return (
     <div className='App'>
@@ -27,11 +40,7 @@ function App({store}) {
               <div className={'Item' + (item.selected ? ' Item_selected' : '')}
                    onClick={() => store.selectItem(item.code)}>
                 <div className='Item-code'>{item.code}</div>
-                <div className='Item-wrapper'>
-                  <div className='Item-title'>{item.title} </div>
-                  <p className={'item-text' + (item.selected ? ' item-text__selected' : '')}>
-                  Выделяли {item.sumSelectedItemArray && item.sumSelectedItemArray.length > 0 ? `${item.sumSelectedItemArray.length} ${getPluralizeItem(item.sumSelectedItemArray.length)}` : ''}</p>
-                </div>
+                <div className='Item-title'>{item.title}</div>
                 <div className='Item-actions'>
                   <button onClick={() => store.deleteItem(item.code)}>
                     Удалить
