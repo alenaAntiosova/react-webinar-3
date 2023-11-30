@@ -1,0 +1,31 @@
+.Cart {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.Cart-title {
+  font-size: 18px;
+  font-weight: 400;
+  padding: 20px 10px;
+}
+
+.Cart-price,
+.Cart-count {
+  padding: 20px 10px 20px 0px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.Cart-price {
+  padding-right: 20px;
+}
+
+.Cart-button {
+  margin-right: 20px;
+  font-size: 13px;
+  padding: 0px 12px;
+  background-color: #f5f5f5;
+  border-radius: 2px;
+  border: 1px solid #767676;
+}
