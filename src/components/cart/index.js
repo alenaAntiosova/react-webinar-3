@@ -1,37 +1,42 @@
 import React, { useState } from 'react'
 import './style.css';
 import PropTypes from "prop-types";
-import CartItem from '../cartitem/index';
+import Modal from '../modal/index';
 
-
-
-function Cart({ cart, getTotalPrice, getCart }) {
+function Cart({ getTotalPrice, getCart, getCartItemRemove }) {
   const [openCart, setOpenCart] = useState(false);
-  const body = document.querySelector('body')
-
 
   const toggleCart = () => {
     setOpenCart(!openCart);
   };
 
-  if (openCart===true) {
-    body.classList.add('black')
-  }
+  const pageLayout = document.querySelector('.PageLayout');
+  
 
+  if (openCart === true) {
+    if (pageLayout) {
+      pageLayout.classList.add('Overlay');
+    }
+  } else {
+    if (pageLayout) {
+      pageLayout.classList.remove('Overlay');
+    }
+  }
 
   return (
     <div className='Cart'>
       <h2 className='Cart-title' onClick={toggleCart}>
-        В корзине:</h2>
-        <p className='Cart-count'>{getCart().length} товаров <span> /</span></p>
-        <p className='Cart-price'>{getTotalPrice()} руб</p>
-        <button className='Cart-button' onClick={toggleCart}>Перейти</button>
+        В корзине:
+      </h2>
+      <p className='Cart-count'>
+        {getCart().length === 0 ? "пусто" : `${getCart().length} товар${getCart().length === 1 ? '' : 'ов'}`}
+      </p>
+      <p className='Cart-price'>
+        {getTotalPrice() === 0 ? "" : `${getTotalPrice()} руб`}
+      </p>
+      <button className='Cart-button' onClick={toggleCart}>Перейти</button>
       {openCart && (
-        <div>
-          {getCart().map((cartItem) => (
-            <CartItem key={cartItem.code} cartItem={cartItem} toggleCart={toggleCart} getTotalPrice={getTotalPrice}/>
-          ))}
-        </div>
+        <Modal getCart={getCart} toggleCart={toggleCart} getCartItemRemove={getCartItemRemove} getTotalPrice={getTotalPrice} />
       )}
     </div>
   );

@@ -16,7 +16,6 @@ import { useCallback } from 'react';
  * @returns {React.ReactElement}
  */
 function App({ store }) {
-  const [cartCount, setCartCount] = useState(0);
   const list = store.getState().list;
   const cart = store.getState().cart;
   
@@ -32,11 +31,14 @@ function App({ store }) {
     return store.getTotalPrice();
   };
 
+  const getCartItemRemove = useCallback((item) => {
+    store.getCartItemRemove(item);
+  } , [store]);
 
   return (
     <PageLayout>
       <Head />
-      <Cart cart ={cart} getCart={getCart} getTotalPrice={getTotalPrice} />
+      <Cart cart ={cart} getCart={getCart} getTotalPrice={getTotalPrice} getCartItemRemove={getCartItemRemove} />
       <List list={list} onAddToCart={onAddToCart} />
     </PageLayout>
   );

@@ -53,15 +53,16 @@ class Store {
     return this.state.cart.reduce((total, item) => total + item.price, 0);
   }
 
+
   /**
    * Удаление записи по коду
    * @param code
    */
-  deleteItem(code) {
+  getCartItemRemove(code) {
     this.setState({
       ...this.state,
       // Новый список, в котором не будет удаляемой записи
-      list: this.state.list.filter((item) => item.code !== code)
+      cart: this.state.cart.filter((item) => item.code !== code)
     });
   }
 
