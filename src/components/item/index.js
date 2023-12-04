@@ -1,15 +1,17 @@
 import React, {useState} from "react";
 import PropTypes from "prop-types";
-// import {plural} from "../../utils";
+import {formatPrice} from "../../utils";
+import {plural} from "../../utils";
 import './style.css';
 import Controls from "../controls";
 
 function Item({ item, onAddToCart }) {
+
   return (
     <div className='Item'>
       <div className='Item-code'>{item.code}</div>
       <div className='Item-title'>{item.title}</div>
-      <span className='Item-price'>{item.price}₽</span>
+      <span className='Item-price'>{formatPrice(item.price)}</span>
       <div className='Item-actions'>
         <button className="Item-button" onClick={onAddToCart}>Добавить</button>
       </div>

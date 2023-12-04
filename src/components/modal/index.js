@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import CartItem from '../cartitem/index';
+import {formatPrice} from "../../utils";
 import './style.css';
 
 
@@ -18,7 +19,7 @@ function Modal({ cartItem, getCart, toggleCart, getTotalPrice, getCartItemRemove
              key={cartItem.code}
              cartItem={cartItem}
              toggleCart={toggleCart}
-             getTotalPrice={getTotalPrice}
+             getTotalPrice={formatPrice(getTotalPrice)}
              count={getCart().length}
              getCartItemRemove={getCartItemRemove}
            />
@@ -26,7 +27,7 @@ function Modal({ cartItem, getCart, toggleCart, getTotalPrice, getCartItemRemove
        </div>
        <div className='Modal-footer'>
          <p className='Modal-footer-text1'>Итого:</p>
-         <p className='Modal-footer-text2'>{getTotalPrice()}₽</p>
+         <p className='Modal-footer-text2'>{formatPrice(getTotalPrice())}</p>
        </div>
      </div>
    );

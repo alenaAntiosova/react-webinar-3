@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './style.css';
 import PropTypes from "prop-types";
+import {formatPrice} from "../../utils";
 import Modal from '../modal/index';
 
 function Cart({ getTotalPrice, getCart, getCartItemRemove }) {
@@ -32,7 +33,7 @@ function Cart({ getTotalPrice, getCart, getCartItemRemove }) {
         {getCart().length === 0 ? "пусто" : `${getCart().length} товар${getCart().length === 1 ? '' : 'ов'}`}
       </p>
       <p className='Cart-price'>
-        {getTotalPrice() === 0 ? "" : `${getTotalPrice()} руб`}
+        {formatPrice(getTotalPrice()) === 0 ? "" : `${formatPrice(getTotalPrice())} руб`}
       </p>
       <button className='Cart-button' onClick={toggleCart}>Перейти</button>
       {openCart && (

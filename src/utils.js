@@ -5,15 +5,15 @@
  * @param variants {Object<String>} Варианты форм множественного числа.
  * @example plural(5, {one: 'товар', few: 'товара', many: 'товаров'})
  * @param [locale] {String} Локаль (код языка)
- * @returns {*|string}
+ * @return {*|string}
  */
-export function plural(value, variants = {}, locale = 'ru-RU') {
+export function plural(value, variants = {}, locale = `ru-RU`) {
   // Получаем фурму кодовой строкой: 'zero', 'one', 'two', 'few', 'many', 'other'
   // В русском языке 3 формы: 'one', 'few', 'many', и 'other' для дробных
   // В английском 2 формы: 'one', 'other'
   const key = new Intl.PluralRules(locale).select(value);
   // Возвращаем вариант по ключу, если он есть
-  return variants[key] || '';
+  return variants[key] || ``;
 }
 
 /**
@@ -45,8 +45,12 @@ export const generateCode1 = (function (start = 0) {
 /**
  * Генератор чисел с шагом 1
  * Вариант с использованием функции как объекта для хранения значения value
- * @returns {Number}
+ * @return {Number}
  */
 export function generateCode2() {
   return generateCode2.value ? ++generateCode2.value : generateCode2.value = 1;
 }
+
+export const formatPrice = (price) => {
+  return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ` `) + ` ₽`;
+};

@@ -27,3 +27,10 @@
   border-radius: 2px;
   border: 1px solid #767676;
 }
+
+.CartItem-actions {
+  display: flex;
+  font-size: 13px;
+  justify-content: flex-end;
+  padding: 20px 20px 20px 20px;
+}
